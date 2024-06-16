@@ -60,19 +60,19 @@ cd restaurant-management-system
 ```bash
 python -m venv venv
 ```
-**4. Activate the virtual environment:**
+**4. Activate the virtual environment:**  
 
-**- On Windows:**
+**- On Windows:**  
     ```bash
     venv\Scripts\activate
     ```
-**- On macOS/Linux:**
+**- On macOS/Linux:**  
 
     ```bash
     source venv/bin/activate
     Install the required dependencies:
     pip install -r requirements.txt
-    ```
+    ```  
 ## Usage
 **1. Start the server:**
 
