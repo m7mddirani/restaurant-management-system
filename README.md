@@ -52,36 +52,37 @@ The reporting functionality provides valuable insights into various aspects of t
 ```bash
    git clone https://github.com/your-repo/restaurant-management-system.git
 ```
-**Navigate to the project directory:**
+**2. Navigate to the project directory:**
 ```bash
 cd restaurant-management-system
 ```
-**Create a virtual environment:**
-
+**3. Create a virtual environment:**
+```bash
 python -m venv venv
-**Activate the virtual environment:**
+```
+**4. Activate the virtual environment:**
 
-**On Windows:**
+**  - On Windows:**
+    ```bash
+    venv\Scripts\activate
+    ```
+**  - On macOS/Linux:**
 
-venv\Scripts\activate
-
-**On macOS/Linux:**
-
-
-source venv/bin/activate
-Install the required dependencies:
-pip install -r requirements.txt
-
+    ```bash
+    source venv/bin/activate
+    Install the required dependencies:
+    pip install -r requirements.txt
+    ```
 ## Usage
-**Start the server:**
+**1. Start the server:**
 
-
+```bash
 python server/main.py
-
-**Start the client:**
-
+```
+**2. Start the client:**
+```bash
 python client/main.py
-
+```
 ## Contributing
 
 Contributions are welcome! Please fork the repository and submit a pull request for any changes.
