@@ -57,22 +57,24 @@ The reporting functionality provides valuable insights into various aspects of t
 cd restaurant-management-system
 ```
 **3. Create a virtual environment:**
+
 ```bash
 python -m venv venv
 ```
 **4. Activate the virtual environment:**  
 
 **- On Windows:**  
-    ```bash
-    venv\Scripts\activate
-    ```
+
+```bash
+venv\Scripts\activate
+```
 **- On macOS/Linux:**  
 
-    ```bash
-    source venv/bin/activate
-    Install the required dependencies:
-    pip install -r requirements.txt
-    ```  
+```bash
+source venv/bin/activate
+Install the required dependencies:
+pip install -r requirements.txt
+```  
 ## Usage
 **1. Start the server:**
 
