@@ -51,10 +51,11 @@ The reporting functionality provides valuable insights into various aspects of t
 **1. Clone the repository:**
 ```bash
    git clone https://github.com/your-repo/restaurant-management-system.git
+```
 **Navigate to the project directory:**
-
+```bash
 cd restaurant-management-system
-
+```
 **Create a virtual environment:**
 
 python -m venv venv
