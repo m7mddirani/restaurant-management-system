@@ -1,0 +1,191 @@
+[
+    {
+        "name": "Tomato",
+        "price": "2500",
+        "entry_date": "2024-06-06",
+        "production_date": "2024-06-06",
+        "expiration_date": "2024-06-11",
+        "quantity": "10",
+        "unit": "kg"
+    },
+    {
+        "name": "Potato",
+        "price": "15000",
+        "entry_date": "2024-06-06",
+        "production_date": "2024-06-06",
+        "expiration_date": "2024-06-11",
+        "quantity": "20",
+        "unit": "kg"
+    },
+    {
+        "name": "Chicken burger",
+        "price": "185000",
+        "entry_date": "2024-06-06",
+        "production_date": "2024-06-04",
+        "expiration_date": "2024-10-06",
+        "quantity": "30",
+        "unit": "pieces"
+    },
+    {
+        "name": "Mayonnaise",
+        "price": "80000",
+        "entry_date": "2024-06-06",
+        "production_date": "2024-05-06",
+        "expiration_date": "2025-06-11",
+        "quantity": "7",
+        "unit": "bottles"
+    },
+    {
+        "name": "Lettuce",
+        "price": "3000",
+        "entry_date": "2024-06-06",
+        "production_date": "2024-06-05",
+        "expiration_date": "2024-06-12",
+        "quantity": "15",
+        "unit": "kg"
+    },
+    {
+        "name": "Beef",
+        "price": "35000",
+        "entry_date": "2024-06-06",
+        "production_date": "2024-06-05",
+        "expiration_date": "2024-06-14",
+        "quantity": "25",
+        "unit": "kg"
+    },
+    {
+        "name": "Chicken breast",
+        "price": "45000",
+        "entry_date": "2024-06-06",
+        "production_date": "2024-06-03",
+        "expiration_date": "2024-06-10",
+        "quantity": "20",
+        "unit": "kg"
+    },
+    {
+        "name": "Bread",
+        "price": "5000",
+        "entry_date": "2024-06-06",
+        "production_date": "2024-06-05",
+        "expiration_date": "2024-06-08",
+        "quantity": "50",
+        "unit": "pieces"
+    },
+    {
+        "name": "Cheese",
+        "price": "12000",
+        "entry_date": "2024-06-06",
+        "production_date": "2024-06-04",
+        "expiration_date": "2024-06-20",
+        "quantity": "10",
+        "unit": "kg"
+    },
+    {
+        "name": "Egg",
+        "price": "200",
+        "entry_date": "2024-06-06",
+        "production_date": "2024-06-04",
+        "expiration_date": "2024-06-10",
+        "quantity": "100",
+        "unit": "pieces"
+    },
+    {
+        "name": "Rice",
+        "price": "10000",
+        "entry_date": "2024-06-06",
+        "production_date": "2024-06-01",
+        "expiration_date": "2024-06-20",
+        "quantity": "30",
+        "unit": "kg"
+    },
+    {
+        "name": "Carrot",
+        "price": "3000",
+        "entry_date": "2024-06-06",
+        "production_date": "2024-06-05",
+        "expiration_date": "2024-06-15",
+        "quantity": "25",
+        "unit": "kg"
+    },
+    {
+        "name": "Avocado",
+        "price": "6000",
+        "entry_date": "2024-06-06",
+        "production_date": "2024-06-05",
+        "expiration_date": "2024-06-10",
+        "quantity": "10",
+        "unit": "pieces"
+    },
+    {
+        "name": "Onion",
+        "price": "2000",
+        "entry_date": "2024-06-06",
+        "production_date": "2024-06-05",
+        "expiration_date": "2024-06-12",
+        "quantity": "20",
+        "unit": "kg"
+    },
+    {
+        "name": "Garlic",
+        "price": "1000",
+        "entry_date": "2024-06-06",
+        "production_date": "2024-06-05",
+        "expiration_date": "2024-06-15",
+        "quantity": "30",
+        "unit": "kg"
+    },
+    {
+        "name": "Olive oil",
+        "price": "25000",
+        "entry_date": "2024-06-06",
+        "production_date": "2024-06-01",
+        "expiration_date": "2025-06-01",
+        "quantity": "5",
+        "unit": "liters"
+    },
+    {
+        "name": "Vinegar",
+        "price": "5000",
+        "entry_date": "2024-06-06",
+        "production_date": "2024-06-01",
+        "expiration_date": "2025-06-01",
+        "quantity": "5",
+        "unit": "bottles"
+    },
+    {
+        "name": "Honey",
+        "price": "10000",
+        "entry_date": "2024-06-06",
+        "production_date": "2024-06-01",
+        "expiration_date": "2025-06-01",
+        "quantity": "5",
+        "unit": "jars"
+    },
+    {
+        "name": "Lemon",
+        "price": "3000",
+        "entry_date": "2024-06-06",
+        "production_date": "2024-06-05",
+        "expiration_date": "2024-06-12",
+        "quantity": "20",
+        "unit": "pieces"
+    },
+    {
+        "name": "Cucumber",
+        "price": "2000",
+        "entry_date": "2024-06-06",
+        "production_date": "2024-06-05",
+        "expiration_date": "2024-06-15",
+        "quantity": "15",
+        "unit": "kg"
+    },
+    {
+        "name": "Baking Powder",
+        "price": "25000",
+        "entry_date": "2024-06-07",
+        "production_date": "2024-04-01",
+        "expiration_date": "2024-12-31",
+        "quantity": "4",
+        "unit": "Packet"
+    }
+]

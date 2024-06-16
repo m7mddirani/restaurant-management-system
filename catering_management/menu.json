@@ -1,0 +1,32 @@
+[
+    {
+    "Traditional Food": [
+        {"name": "Kabab", "Sale Price": 40000, "Production Price": 30000},
+        {"name": "Joje", "Sale Price": 45000, "Production Price": 30000},
+        {"name": "Barg", "Sale Price": 50000, "Production Price": 35000},
+        {"name": "Tahchin", "Sale Price": 35000, "Production Price": 20000},
+        {"name": "Rice", "Sale Price": 25000, "Production Price": 10000},
+        {"name": "Salad", "Sale Price": 35000, "Production Price": 22000}
+    ],
+    "Chicken Strips": [
+        {"name": "Chicken Strips 2", "Sale Price": 120000, "Production Price": 80000},
+        {"name": "Chicken Strips 3", "Sale Price": 135000, "Production Price": 85000},
+        {"name": "Chicken Strips 4", "Sale Price": 160000, "Production Price": 100000},
+        {"name": "Chicken Strips 5", "Sale Price": 180000, "Production Price": 110000}
+    ],
+    "Burgers": [
+        {"name": "American Burger", "Sale Price": 150000, "Production Price": 90000},
+        {"name": "Burger Economic Package", "Sale Price": 185000, "Production Price": 100000},
+        {"name": "Burger Family Package", "Sale Price": 300000, "Production Price": 200000},
+        {"name": "Chicken Burger", "Sale Price": 135000, "Production Price": 85000}
+    ],
+    "Potatoes": [
+        {"name": "Potato Large Box", "Sale Price": 15000, "Production Price": 5000},
+        {"name": "Potato Small Box", "Sale Price": 8000, "Production Price": 3000}
+    ],
+    "Drinks": [
+        {"name": "Pepsi", "Sale Price": 10000, "Production Price": 8000},
+        {"name": "Doogh", "Sale Price": 8000, "Production Price": 5500}
+    ]
+    }
+]
