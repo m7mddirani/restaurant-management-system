@@ -1,6 +1,6 @@
+import os
 import tkinter as tk
 from tkinter import ttk
-import os
 from PIL import Image, ImageTk
 from backend.save_data import SaveData
 
@@ -8,15 +8,15 @@ class MenuPage(tk.Frame):
     def __init__(self, master):
         super().__init__(master)
         self.master = master
-        self.configure(bg="#1F2836")
-
+        self.configure(bg="#dbd7cd")
+        self.master.geometry("800x703") 
         self.item_frames = {}  # Initialize item_frames here
 
         print("MenuPage: Initialized")  # Debugging statement
 
-        canvas = tk.Canvas(self, bg="#1F2836")
+        canvas = tk.Canvas(self, bg="#dbd7cd")
         scrollbar = ttk.Scrollbar(self, orient="vertical", command=canvas.yview)
-        scrollable_frame = tk.Frame(canvas, bg="#1F2836")
+        scrollable_frame = tk.Frame(canvas, bg="#dbd7cd")
 
         scrollable_frame.bind(
             "<Configure>",
@@ -25,7 +25,7 @@ class MenuPage(tk.Frame):
             )
         )
 
-        canvas.create_window((0, 0), window=scrollable_frame, anchor="nw")
+        canvas.create_window((0, 0), window=scrollable_frame, anchor="center")  # Anchor to the center
         canvas.configure(yscrollcommand=scrollbar.set)
 
         canvas.pack(side="left", fill="both", expand=True)
@@ -38,7 +38,7 @@ class MenuPage(tk.Frame):
         row = 0
 
         for group_name, items in groups.items():
-            tk.Label(parent, text=group_name, font=("Arial", 18), bg="#1F2836", fg="#F2F2F2").grid(row=row, column=0, columnspan=4, pady=10)
+            tk.Label(parent, text=group_name, font=("Arial", 18), bg="#dbd7cd", fg="#324e41").grid(row=row, column=0, columnspan=4, pady=10)
             row += 1
 
             for index, item in enumerate(items):
@@ -49,40 +49,40 @@ class MenuPage(tk.Frame):
             if col != 3:
                 row += 1
 
-        tk.Button(parent, text="Finish Order", command=self.finish_order, bg="#2ECC71", fg="white", font=("Arial", 14)).grid(row=row, column=1, pady=20)
+        tk.Button(parent, text="Finish Order", command=self.finish_order, bg="#334e41", fg="white", font=("Arial", 14)).grid(row=row, column=1, pady=20)
 
     def create_item_frame(self, parent, item, row, col):
-        frame = tk.Frame(parent, bg="#1F2836", bd=2)
+        frame = tk.Frame(parent, bg="#dbd7cd", bd=2)
         frame.grid(row=row, column=col, padx=5, pady=5)
 
         script_dir = os.path.dirname(__file__)
         image_path = os.path.join(script_dir, "images", item["image"])
         image = Image.open(image_path)
-        image = image.resize((80, 80), Image.LANCZOS)  # Resize the images to be smaller
+        image = image.resize((150, 150), Image.LANCZOS)  # Resize the images to be smaller
         photo = ImageTk.PhotoImage(image)
 
         label = tk.Label(frame, image=photo)
         label.image = photo
         label.pack()
 
-        label = tk.Label(frame, text=item["name"], bg="#1F2836", fg="#F2F2F2")
+        label = tk.Label(frame, text=item["name"], bg="#dbd7cd", fg="#324e41")
         label.pack()
 
-        label = tk.Label(frame, text=f"Price: {item['price']}", bg="#1F2836", fg="#F2F2F2")
+        label = tk.Label(frame, text=f"Price: {item['price']}", bg="#dbd7cd", fg="#324e41")
         label.pack()
 
-        quantity_frame = tk.Frame(frame, bg="#1F2836")
+        quantity_frame = tk.Frame(frame, bg="#dbd7cd")
         quantity_frame.pack()
 
         self.item_frames[item["name"]] = {"frame": frame, "quantity": 0}
 
-        increment_button = tk.Button(quantity_frame, text="+", command=lambda: self.increment(item["name"]))
+        increment_button = tk.Button(quantity_frame,bg="#334e41", fg="white", text="+", command=lambda: self.increment(item["name"]))
         increment_button.grid(row=0, column=0)
 
-        quantity_label = tk.Label(quantity_frame, text="0", bg="#1F2836", fg="#F2F2F2")
+        quantity_label = tk.Label(quantity_frame, text="0", bg="#dbd7cd", fg="#324e41")
         quantity_label.grid(row=0, column=1)
 
-        decrement_button = tk.Button(quantity_frame, text="-", command=lambda: self.decrement(item["name"]))
+        decrement_button = tk.Button(quantity_frame,bg="#334e41", fg="white", text="-", command=lambda: self.decrement(item["name"]))
         decrement_button.grid(row=0, column=2)
 
         self.item_frames[item["name"]]["label"] = quantity_label

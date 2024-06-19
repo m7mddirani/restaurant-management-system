@@ -1,14 +1,18 @@
-import tkinter as tk
-from tkinter import ttk, messagebox
-import time
-from fpdf import FPDF
 import os
+import time
+import tkinter as tk
+
+
+from tkinter import ttk, messagebox
 from tkcalendar import DateEntry
+from fpdf import FPDF
+
 from backend.save_data import SaveData
+
 
 class OrdersPage(tk.Frame):
     def __init__(self, master, server_page, orders):
-        super().__init__(master, bg="#1F2836")
+        super().__init__(master, bg="#dbd7cd")
         self.server_page = server_page
         self.orders = orders
         self.filtered_orders = orders  # Initialize filtered_orders with all orders
@@ -19,12 +23,12 @@ class OrdersPage(tk.Frame):
         self.update_remaining_time()  # Start the countdown update
 
     def create_order_frame(self):
-        self.order_frame = tk.Frame(self, bg="#1F2836")
+        self.order_frame = tk.Frame(self, bg="#dbd7cd")
         self.order_frame.pack(fill=tk.BOTH, expand=True)
 
-        self.canvas = tk.Canvas(self.order_frame, bg="#1F2836")
+        self.canvas = tk.Canvas(self.order_frame, bg="#dbd7cd")
         self.scrollbar = ttk.Scrollbar(self.order_frame, orient="vertical", command=self.canvas.yview)
-        self.scrollable_frame = tk.Frame(self.canvas, bg="#1F2836")
+        self.scrollable_frame = tk.Frame(self.canvas, bg="#dbd7cd")
 
         self.scrollable_frame.bind(
             "<Configure>",
@@ -40,19 +44,19 @@ class OrdersPage(tk.Frame):
         self.scrollbar.pack(side="right", fill="y")
 
     def create_filter_buttons(self):
-        button_frame = tk.Frame(self, bg="#1F2836")
+        button_frame = tk.Frame(self, bg="#dbd7cd")
         button_frame.pack(fill=tk.X, pady=10)
 
-        self.date_entry = DateEntry(button_frame, width=12, background='darkblue', foreground='white', borderwidth=2)
+        self.date_entry = DateEntry(button_frame, width=12, bg="#dbd7cd", fg="#334e41", borderwidth=2)
         self.date_entry.pack(side=tk.LEFT, padx=5)
 
-        show_all_orders_button = tk.Button(button_frame, text="Show All Orders", command=self.display_orders, bg="#2ECC71", fg="white")
+        show_all_orders_button = tk.Button(button_frame, text="Show All Orders", command=self.display_orders, bg="#dbd7cd", fg="#334e41")
         show_all_orders_button.pack(side=tk.LEFT, padx=5)
 
-        show_orders_per_day_button = tk.Button(button_frame, text="Show Orders Per Day", command=self.display_orders_per_day, bg="#2ECC71", fg="white")
+        show_orders_per_day_button = tk.Button(button_frame, text="Show Orders Per Day", command=self.display_orders_per_day, bg="#dbd7cd", fg="#334e41")
         show_orders_per_day_button.pack(side=tk.LEFT, padx=5)
 
-        show_items_not_finished_button = tk.Button(button_frame, text="Show Items Ordered Not Finished", command=self.display_items_not_finished, bg="#2ECC71", fg="white")
+        show_items_not_finished_button = tk.Button(button_frame, text="Show Items Ordered Not Finished", command=self.display_items_not_finished, bg="#dbd7cd", fg="#334e41")
         show_items_not_finished_button.pack(side=tk.LEFT, padx=5)
 
     def display_orders(self):
@@ -60,7 +64,7 @@ class OrdersPage(tk.Frame):
             widget.destroy()
 
         for index, order in enumerate(self.filtered_orders):
-            order_frame = tk.Frame(self.scrollable_frame, bg="#1F2836", bd=2, relief=tk.RIDGE)
+            order_frame = tk.Frame(self.scrollable_frame, bg="#dbd7cd", bd=2, relief=tk.RIDGE)
             order_frame.pack(fill=tk.X, pady=5, padx=5)
 
             order_text = f"Order {index + 1}:\n"
@@ -91,16 +95,14 @@ class OrdersPage(tk.Frame):
                 if remaining_time == 0:
                     order_text += "Order is finished\n"
 
-            label = tk.Label(order_frame, text=order_text, bg="#1F2836", fg="#F2F2F2", justify=tk.LEFT)
+            label = tk.Label(order_frame, text=order_text, bg="#dbd7cd", fg="#334e41", justify=tk.LEFT)
             label.pack(anchor="w", side=tk.LEFT)
 
-            edit_button = tk.Button(order_frame, text="Edit Order", command=lambda o=order: self.edit_order(o), bg="#3498DB", fg="white")
+            edit_button = tk.Button(order_frame, text="Edit Order", command=lambda o=order: self.edit_order(o), bg="#dbd7cd", fg="#334e41")
             edit_button.pack(side=tk.RIGHT)
 
-            print_button = tk.Button(order_frame, text="Print Order", command=lambda o=order: self.print_order(o), bg="#2ECC71", fg="white")
+            print_button = tk.Button(order_frame, text="Print Order", command=lambda o=order: self.print_order(o), bg="#dbd7cd", fg="#334e41")
             print_button.pack(side=tk.RIGHT, padx=5)
-
-
 
     def display_items_not_finished(self):
         for widget in self.scrollable_frame.winfo_children():
@@ -116,11 +118,11 @@ class OrdersPage(tk.Frame):
                         items[item] = count
 
         for item, count in items.items():
-            item_frame = tk.Frame(self.scrollable_frame, bg="#1F2836", bd=2, relief=tk.RIDGE)
+            item_frame = tk.Frame(self.scrollable_frame, bg="#dbd7cd", bd=2, relief=tk.RIDGE)
             item_frame.pack(fill=tk.X, pady=5, padx=5)
 
             item_text = f"{item}: {count}"
-            label = tk.Label(item_frame, text=item_text, bg="#1F2836", fg="#F2F2F2", font=("Arial", 14), justify=tk.LEFT)
+            label = tk.Label(item_frame, text=item_text, bg="#dbd7cd", fg="#334e41", font=("Arial", 14), justify=tk.LEFT)
             label.pack(anchor="w", side=tk.LEFT, padx=10, pady=5)
 
     def display_orders_per_day(self):
@@ -130,7 +132,6 @@ class OrdersPage(tk.Frame):
 
     def edit_order(self, order):
         self.server_page.show_menu_page(order_to_edit=order)
-
 
     def submit_order_details(self, first_name, last_name, phone_number, address, details, transaction_id, new_customer, customer_code, window, order_to_edit):
         order_dict = {}
@@ -194,9 +195,6 @@ class OrdersPage(tk.Frame):
         window.destroy()
         self.server_page.show_orders_page()
 
-
-
-
     def print_order(self, order):
         pdf = FPDF()
         pdf.add_page()
@@ -242,7 +240,12 @@ class OrdersPage(tk.Frame):
         human_readable_time = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime(order.get('start_time', 0)))
         pdf.cell(200, 10, txt=f"Start Time: {human_readable_time}", ln=True)
 
-        pdf_output_path = os.path.join(os.path.dirname(__file__), '..', '..', 'receipts', f"order_{order['transaction_id']}.pdf")
+        # Create receipts directory if it doesn't exist
+        receipts_dir = os.path.join(os.path.dirname(__file__), '..', '..', 'receipts')
+        if not os.path.exists(receipts_dir):
+            os.makedirs(receipts_dir)
+
+        pdf_output_path = os.path.join(receipts_dir, f"order_{order['transaction_id']}.pdf")
         pdf.output(pdf_output_path)
         messagebox.showinfo("Success", f"Order has been printed to {pdf_output_path}")
 

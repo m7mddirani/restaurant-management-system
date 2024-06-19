@@ -1,4 +1,6 @@
 import tkinter as tk
+
+
 from backend.save_data import SaveData
 from backend.warehouse import Warehouse
 from backend.menu_page import MenuPage
@@ -10,40 +12,40 @@ from backend.valuable_customer import CustomerReport
 # server_page.py
 class ServerPage(tk.Frame):
     def __init__(self, master):
-        super().__init__(master)
+        super().__init__(master, bg="#dbd7cd")
         self.master = master
-        self.configure(bg="#1F2836")
+        self.configure(bg="#dbd7cd")
         self.orders = SaveData.load_orders()  # Load orders from JSON file
         self.warehouse = Warehouse()  # Initialize warehouse
 
         # Create sidebar    
-        self.sidebar = tk.Frame(self, bg="#2C3E50", width=200)
+        self.sidebar = tk.Frame(self, bg="#dbd7cd", width=200)
         self.sidebar.pack(side=tk.LEFT, fill=tk.Y)
         self.sidebar.pack_propagate(False)
 
         self.create_sidebar()
 
         # Create main content area
-        self.content = tk.Frame(self, bg="#1F2836")
+        self.content = tk.Frame(self, bg="#dbd7cd")
         self.content.pack(side=tk.LEFT, fill=tk.BOTH, expand=True)
 
         self.show_menu_page()
 
     def create_sidebar(self):
         # Sidebar user info
-        user_frame = tk.Frame(self.sidebar, bg="#34495E", height=100)
+        user_frame = tk.Frame(self.sidebar, bg="#dbd7cd", height=100)
         user_frame.pack(fill=tk.X)
-        user_label = tk.Label(user_frame, text="Khosravi", bg="#34495E", fg="white", font=("Arial", 14))
+        user_label = tk.Label(user_frame, text="Khosravi", bg="#dbd7cd", fg="#334e41" ,font=("Arial", 14))
         user_label.pack(side=tk.LEFT, padx=10, pady=10)
 
         # Sidebar buttons
-        menu_button = tk.Button(self.sidebar, text="Menu", bg="#2C3E50", fg="white", command=self.show_menu_page, bd=0, font=("Arial", 12))
+        menu_button = tk.Button(self.sidebar, text="Menu", bg="#dbd7cd", fg="#334e41", command=self.show_menu_page, bd=0, font=("Arial", 12))
         menu_button.pack(fill=tk.X, pady=5)
-        orders_button = tk.Button(self.sidebar, text="Orders", bg="#2C3E50", fg="white", command=self.show_orders_page, bd=0, font=("Arial", 12))
+        orders_button = tk.Button(self.sidebar, text="Orders", bg="#dbd7cd", fg="#334e41", command=self.show_orders_page, bd=0, font=("Arial", 12))
         orders_button.pack(fill=tk.X, pady=5)
-        warehouse_button = tk.Button(self.sidebar, text="Warehouse", bg="#2C3E50", fg="white", command=self.show_warehouse_page, bd=0, font=("Arial", 12))
+        warehouse_button = tk.Button(self.sidebar, text="Warehouse", bg="#dbd7cd", fg="#334e41", command=self.show_warehouse_page, bd=0, font=("Arial", 12))
         warehouse_button.pack(fill=tk.X, pady=5)
-        reports_button = tk.Button(self.sidebar, text="Reports", bg="#2C3E50", fg="white", command=self.show_reports_page, bd=0, font=("Arial", 12))
+        reports_button = tk.Button(self.sidebar, text="Reports", bg="#dbd7cd", fg="#334e41", command=self.show_reports_page, bd=0, font=("Arial", 12))
         reports_button.pack(fill=tk.X, pady=5)
 
     def show_menu_page(self, order_to_edit=None):

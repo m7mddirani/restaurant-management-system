@@ -1,6 +1,9 @@
-import tkinter as tk
-from threading import Thread
 import json
+import tkinter as tk
+
+
+from threading import Thread
+
 from frontend.menu import MenuPage
 from backend.network import Client
 

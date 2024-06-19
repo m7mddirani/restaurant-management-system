@@ -1,11 +1,14 @@
-import tkinter as tk
-from tkinter import messagebox
-from fpdf import FPDF
 import os
 import json
-from datetime import datetime
-from backend.save_data import SaveData
+import tkinter as tk
+
+
+from tkinter import messagebox
 from tkcalendar import DateEntry
+from fpdf import FPDF
+
+from backend.save_data import SaveData
+
 
 class CustomerReport:
 
@@ -29,7 +32,7 @@ class CustomerReport:
         return [{"code": code, "first_name": data["first_name"], "last_name": data["last_name"], "uses": data["uses"]} for code, data in sorted_codes if data["uses"] > 0]
 
     def create_reports_frame(self):
-        self.reports_frame = tk.Frame(self, bg="#1F2836")
+        self.reports_frame = tk.Frame(self, bg="#8997ad")
         self.reports_frame.pack(fill=tk.BOTH, expand=True)
 
         self.date_entry = DateEntry(self.reports_frame, width=12, background='darkblue', foreground='white', borderwidth=2)

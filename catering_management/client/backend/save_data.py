@@ -9,6 +9,7 @@ class SaveData:
     orders_file = 'orders.json'
     warehouse_file = 'warehouse_data.json'
     order_times_file = 'order_times.json'
+    transaction_count_file = 'transaction_count.json'
 
     def __init__(self, customer_codes_file_path='customer_codes.json', orders_file_path='orders.json', warehouse_path ='warehouse_data.json', order_times_file_path='order_times.json'):
         self.customer_codes_file = customer_codes_file_path
@@ -20,6 +21,23 @@ class SaveData:
         self.order_times_file_path = order_times_file_path
         self.order_times = self.load_order_times()
 
+
+    @staticmethod
+    def get_transaction_count(current_date):
+        if os.path.exists(SaveData.transaction_count_file):
+            with open(SaveData.transaction_count_file, 'r') as file:
+                data = json.load(file)
+                if data.get('date') == current_date:
+                    return data.get('count', 0) + 1
+        return 1
+
+    @staticmethod
+    def increment_transaction_count():
+        current_date = time.strftime("%Y-%m-%d")
+        count = SaveData.get_transaction_count(current_date)
+        data = {'date': current_date, 'count': count}
+        with open(SaveData.transaction_count_file, 'w') as file:
+            json.dump(data, file)
     @staticmethod
     def add_item(item_name):
         SaveData._order.append(item_name)

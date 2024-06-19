@@ -1,61 +1,53 @@
-import tkinter as tk
-from tkinter import messagebox
-from backend.send_data import SendData
-from backend.save_data import SaveData
-from PIL import Image, ImageTk
 import os
 import time
+import tkinter as tk
+from tkinter import messagebox
+
+from backend.send_data import SendData
+from backend.save_data import SaveData
 
 class AddressPage(tk.Frame):
     def __init__(self, master):
         super().__init__(master)
         self.master = master
-        self.configure(bg="#1F2836")
-        
+        self.configure(bg="#dbd7cd")
+        self.master.geometry("500x300")
         print("AddressPage: Initialized")
 
-        script_dir = os.path.dirname(__file__)
-        bg_image_path = os.path.join(script_dir, "images", "persia-nov19issue-may20-saghar.jpg")
-        self.bg_image = ImageTk.PhotoImage(Image.open(bg_image_path))
-        bg_label = tk.Label(self, image=self.bg_image)
-        bg_label.pack(fill=tk.BOTH, expand=True)
+
         
-        self.frame = tk.Frame(self, bg="#1F2836", bd=5)
+        self.frame = tk.Frame(self, bg="#dbd7cd", bd=5)
         self.frame.place(relx=0.5, rely=0.5, anchor="center")
 
-        tk.Label(self.frame, text="First Name", bg="#1F2836", fg="#F2F2F2").grid(row=0, column=0, padx=5, pady=5)
-        self.first_name = tk.Entry(self.frame, bg="#1F2836", fg="#F2F2F2")
+        tk.Label(self.frame, text="First Name", bg="#dbd7cd", fg="#334e41").grid(row=0, column=0, padx=5, pady=5)
+        self.first_name = tk.Entry(self.frame, bg="#dbd7cd", fg="#334e41")
         self.first_name.grid(row=0, column=1, padx=5, pady=5)
         
-        tk.Label(self.frame, text="Last Name", bg="#1F2836", fg="#F2F2F2").grid(row=1, column=0, padx=5, pady=5)
-        self.last_name = tk.Entry(self.frame, bg="#1F2836", fg="#F2F2F2")
+        tk.Label(self.frame, text="Last Name", bg="#dbd7cd", fg="#334e41").grid(row=1, column=0, padx=5, pady=5)
+        self.last_name = tk.Entry(self.frame, bg="#dbd7cd", fg="#334e41")
         self.last_name.grid(row=1, column=1, padx=5, pady=5)
         
-        tk.Label(self.frame, text="Phone Number", bg="#1F2836", fg="#F2F2F2").grid(row=2, column=0, padx=5, pady=5)
-        self.phone_number = tk.Entry(self.frame, bg="#1F2836", fg="#F2F2F2")
+        tk.Label(self.frame, text="Phone Number", bg="#dbd7cd", fg="#334e41").grid(row=2, column=0, padx=5, pady=5)
+        self.phone_number = tk.Entry(self.frame, bg="#dbd7cd", fg="#334e41")
         self.phone_number.grid(row=2, column=1, padx=5, pady=5)
         
-        tk.Label(self.frame, text="Address", bg="#1F2836", fg="#F2F2F2").grid(row=3, column=0, padx=5, pady=5)
-        self.address = tk.Entry(self.frame, bg="#1F2836", fg="#F2F2F2")
+        tk.Label(self.frame, text="Address", bg="#dbd7cd", fg="#334e41").grid(row=3, column=0, padx=5, pady=5)
+        self.address = tk.Entry(self.frame, bg="#dbd7cd", fg="#334e41")
         self.address.grid(row=3, column=1, padx=5, pady=5)
         
-        tk.Label(self.frame, text="Details", bg="#1F2836", fg="#F2F2F2").grid(row=4, column=0, padx=5, pady=5)
-        self.details = tk.Entry(self.frame, bg="#1F2836", fg="#F2F2F2")
+        tk.Label(self.frame, text="Details", bg="#dbd7cd", fg="#334e41").grid(row=4, column=0, padx=5, pady=5)
+        self.details = tk.Entry(self.frame, bg="#dbd7cd", fg="#334e41")
         self.details.grid(row=4, column=1, padx=5, pady=5)
-        
-        tk.Label(self.frame, text="Transaction ID", bg="#1F2836", fg="#F2F2F2").grid(row=5, column=0, padx=5, pady=5)
-        self.transaction_id = tk.Entry(self.frame, bg="#1F2836", fg="#F2F2F2")
-        self.transaction_id.grid(row=5, column=1, padx=5, pady=5)
 
         new_customer_var = tk.BooleanVar()
-        tk.Checkbutton(self.frame, text="New Customer", variable=new_customer_var, bg="#1F2836", fg="#F2F2F2").grid(row=6, column=0, padx=5, pady=5)
+        tk.Checkbutton(self.frame, text="New Customer", variable=new_customer_var, bg="#dbd7cd", fg="#334e41").grid(row=5, column=0, padx=5, pady=5)
 
-        tk.Label(self.frame, text="Customer Code (if any)", bg="#1F2836", fg="#F2F2F2").grid(row=6, column=1, padx=5, pady=5)
-        self.customer_code = tk.Entry(self.frame, bg="#1F2836", fg="#F2F2F2")
-        self.customer_code.grid(row=6, column=2, padx=5, pady=5)
+        tk.Label(self.frame, text="Customer Code (if any)", bg="#dbd7cd", fg="#334e41").grid(row=5, column=1, padx=5, pady=5)
+        self.customer_code = tk.Entry(self.frame, bg="#dbd7cd", fg="#334e41")
+        self.customer_code.grid(row=5, column=2, padx=5, pady=5)
         
-        submit_button = tk.Button(self.frame, text="Submit", command=lambda: self.submit_order(new_customer_var.get()), bg="#F2F2F2", fg="#1F2836")
-        submit_button.grid(row=7, columnspan=2, pady=10)
+        submit_button = tk.Button(self.frame, text="Submit", command=lambda: self.submit_order(new_customer_var.get()), bg="#334e41", fg="#dbd7cd")
+        submit_button.grid(row=6, columnspan=2, pady=10)
         
         print("AddressPage: Components added")
 
@@ -65,7 +57,6 @@ class AddressPage(tk.Frame):
         phone_number = self.phone_number.get()
         address = self.address.get()
         details = self.details.get()
-        transaction_id = self.transaction_id.get()
         customer_code = self.customer_code.get()
 
         order = SaveData.get_order()
@@ -99,6 +90,8 @@ class AddressPage(tk.Frame):
         total_price = sum(SaveData.get_item_price(item) * count for item, count in order_dict.items())
         discounted_price = SaveData.apply_discount(total_price, discount)
 
+        transaction_id = self.generate_transaction_id()
+
         order_data = {
             "first_name": first_name,
             "last_name": last_name,
@@ -122,3 +115,9 @@ class AddressPage(tk.Frame):
             messagebox.showinfo("Success", "Order submitted successfully.")
         else:
             messagebox.showerror("Error", "Failed to submit order. Please try again.")
+
+    def generate_transaction_id(self):
+        current_date = time.strftime("%Y-%m-%d")
+        transaction_count = SaveData.get_transaction_count(current_date)
+        SaveData.increment_transaction_count()
+        return f"{transaction_count:03d}"

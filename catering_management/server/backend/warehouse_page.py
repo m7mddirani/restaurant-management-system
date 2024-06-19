@@ -1,6 +1,8 @@
-import tkinter as tk
-from tkinter import ttk
 import os
+import tkinter as tk
+
+
+from tkinter import ttk
 from PIL import Image, ImageTk
 
 class WarehousePage(tk.Frame):
@@ -24,9 +26,9 @@ class WarehousePage(tk.Frame):
         warehouse_frame = tk.Frame(self.bg_label)  # Removed background color
         warehouse_frame.pack(fill=tk.BOTH, expand=True)
 
-        self.canvas = tk.Canvas(warehouse_frame, bg="#1F2836")
+        self.canvas = tk.Canvas(warehouse_frame, bg="#dbd7cd")
         self.scrollbar = ttk.Scrollbar(warehouse_frame, orient="vertical", command=self.canvas.yview)
-        self.scrollable_frame = tk.Frame(self.canvas, bg="#1F2836")
+        self.scrollable_frame = tk.Frame(self.canvas, bg="#dbd7cd")
 
         self.scrollable_frame.bind(
             "<Configure>",
@@ -47,14 +49,14 @@ class WarehousePage(tk.Frame):
         for widget in self.scrollable_frame.winfo_children():
             widget.destroy()
 
-        tk.Label(self.scrollable_frame, text="Warehouse", font=("Arial", 18), bg="#1F2836", fg="#F2F2F2").pack(pady=10)
+        tk.Label(self.scrollable_frame, text="Warehouse", font=("Arial", 18), bg="#dbd7cd", fg="#334e41").pack(pady=10)
 
-        add_button = tk.Button(self.scrollable_frame, text="Add Material", command=self.add_material_window, bg="grey", fg="white")
+        add_button = tk.Button(self.scrollable_frame, text="Add Material", command=self.add_material_window, bg="#dbd7cd", fg="#334e41")
         add_button.pack(pady=10)
 
         materials = self.warehouse.get_materials()
         for material in materials:
-            material_frame = tk.Frame(self.scrollable_frame, bg="#1F2836")
+            material_frame = tk.Frame(self.scrollable_frame, bg="#dbd7cd")
             material_frame.pack(fill=tk.X, pady=5)
 
             material_text = (
@@ -65,45 +67,45 @@ class WarehousePage(tk.Frame):
                 f"Expiration Date: {material['expiration_date']}\n"
                 f"Quantity: {material['quantity']} {material['unit']}"
             )
-            tk.Label(material_frame, text=material_text, bg="#1F2836", fg="#F2F2F2", justify=tk.LEFT).pack(anchor="w", side=tk.LEFT)
+            tk.Label(material_frame, text=material_text, bg="#dbd7cd", fg="#334e41", justify=tk.LEFT).pack(anchor="w", side=tk.LEFT)
 
-            remove_button = tk.Button(material_frame, text="Remove", command=lambda m=material: self.remove_material(m['name']), bg="grey", fg="white")
+            remove_button = tk.Button(material_frame, text="Remove", command=lambda m=material: self.remove_material(m['name']), bg="#dbd7cd", fg="#334e41")
             remove_button.pack(side=tk.RIGHT, padx=5)
 
-            edit_button = tk.Button(material_frame, text="Edit", command=lambda m=material: self.edit_material_window(m), bg="grey", fg="white")
+            edit_button = tk.Button(material_frame, text="Edit", command=lambda m=material: self.edit_material_window(m), bg="#dbd7cd", fg="#334e41")
             edit_button.pack(side=tk.RIGHT)
 
     def add_material_window(self):
         window = tk.Toplevel(self)
         window.title("Add Material")
         window.geometry("300x450")
-        window.configure(bg="#1F2836")
+        window.configure(bg="#dbd7cd")
 
-        tk.Label(window, text="Name", bg="#1F2836", fg="#F2F2F2").pack(pady=5)
+        tk.Label(window, text="Name", bg="#dbd7cd", fg="#334e41").pack(pady=5)
         name_entry = tk.Entry(window)
         name_entry.pack(pady=5)
 
-        tk.Label(window, text="Price", bg="#1F2836", fg="#F2F2F2").pack(pady=5)
+        tk.Label(window, text="Price", bg="#dbd7cd", fg="#334e41").pack(pady=5)
         price_entry = tk.Entry(window)
         price_entry.pack(pady=5)
 
-        tk.Label(window, text="Entry Date (YYYY-MM-DD)", bg="#1F2836", fg="#F2F2F2").pack(pady=5)
+        tk.Label(window, text="Entry Date (YYYY-MM-DD)", bg="#dbd7cd", fg="#334e41").pack(pady=5)
         entry_date_entry = tk.Entry(window)
         entry_date_entry.pack(pady=5)
 
-        tk.Label(window, text="Production Date (YYYY-MM-DD)", bg="#1F2836", fg="#F2F2F2").pack(pady=5)
+        tk.Label(window, text="Production Date (YYYY-MM-DD)", bg="#dbd7cd", fg="#334e41").pack(pady=5)
         production_date_entry = tk.Entry(window)
         production_date_entry.pack(pady=5)
 
-        tk.Label(window, text="Expiration Date (YYYY-MM-DD)", bg="#1F2836", fg="#F2F2F2").pack(pady=5)
+        tk.Label(window, text="Expiration Date (YYYY-MM-DD)", bg="#dbd7cd", fg="#334e41").pack(pady=5)
         expiration_date_entry = tk.Entry(window)
         expiration_date_entry.pack(pady=5)
 
-        tk.Label(window, text="Quantity", bg="#1F2836", fg="#F2F2F2").pack(pady=5)
+        tk.Label(window, text="Quantity", bg="#dbd7cd", fg="#334e41").pack(pady=5)
         quantity_entry = tk.Entry(window)
         quantity_entry.pack(pady=5)
 
-        tk.Label(window, text="Unit", bg="#1F2836", fg="#F2F2F2").pack(pady=5)
+        tk.Label(window, text="Unit", bg="#dbd7cd", fg="#334e41").pack(pady=5)
         unit_entry = tk.Entry(window)
         unit_entry.pack(pady=5)
 
@@ -116,7 +118,7 @@ class WarehousePage(tk.Frame):
             quantity_entry.get(),
             unit_entry.get(),
             window
-        ), bg="grey", fg="white")
+        ), bg="#dbd7cd", fg="#334e41")
         submit_button.pack(pady=10)
 
     def add_material(self, name, price, entry_date, production_date, expiration_date, quantity, unit, window):
@@ -132,29 +134,29 @@ class WarehousePage(tk.Frame):
         window = tk.Toplevel(self)
         window.title("Edit Material")
         window.geometry("300x400")
-        window.configure(bg="#1F2836")
+        window.configure(bg="#dbd7cd")
 
-        tk.Label(window, text="Name", bg="#1F2836", fg="#F2F2F2").pack(pady=5)
+        tk.Label(window, text="Name", bg="#dbd7cd", fg="#334e41").pack(pady=5)
         name_entry = tk.Entry(window)
         name_entry.insert(0, material['name'])
         name_entry.pack(pady=5)
 
-        tk.Label(window, text="Price", bg="#1F2836", fg="#F2F2F2").pack(pady=5)
+        tk.Label(window, text="Price", bg="#dbd7cd", fg="#334e41").pack(pady=5)
         price_entry = tk.Entry(window)
         price_entry.insert(0, material['price'])
         price_entry.pack(pady=5)
 
-        tk.Label(window, text="Entry Date (YYYY-MM-DD)", bg="#1F2836", fg="#F2F2F2").pack(pady=5)
+        tk.Label(window, text="Entry Date (YYYY-MM-DD)", bg="#dbd7cd", fg="#334e41").pack(pady=5)
         entry_date_entry = tk.Entry(window)
         entry_date_entry.insert(0, material['entry_date'])
         entry_date_entry.pack(pady=5)
 
-        tk.Label(window, text="Production Date (YYYY-MM-DD)", bg="#1F2836", fg="#F2F2F2").pack(pady=5)
+        tk.Label(window, text="Production Date (YYYY-MM-DD)", bg="#dbd7cd", fg="#334e41").pack(pady=5)
         production_date_entry = tk.Entry(window)
         production_date_entry.insert(0, material['production_date'])
         production_date_entry.pack(pady=5)
 
-        tk.Label(window, text="Expiration Date (YYYY-MM-DD)", bg="#1F2836", fg="#F2F2F2").pack(pady=5)
+        tk.Label(window, text="Expiration Date (YYYY-MM-DD)", bg="#dbd7cd", fg="#334e41").pack(pady=5)
         expiration_date_entry = tk.Entry(window)
         expiration_date_entry.insert(0, material['expiration_date'])
         expiration_date_entry.pack(pady=5)
@@ -169,7 +171,7 @@ class WarehousePage(tk.Frame):
                 'expiration_date': expiration_date_entry.get()
             },
             window
-        ), bg="grey", fg="white")
+        ), bg="#dbd7cd", fg="#334e41")
         submit_button.pack(pady=10)
 
     def update_material(self, original_name, updated_info, window):

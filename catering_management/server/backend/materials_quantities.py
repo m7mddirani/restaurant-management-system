@@ -1,8 +1,11 @@
-import tkinter as tk
-from tkinter import messagebox
-from fpdf import FPDF
 import os
 import json
+import tkinter as tk
+
+
+from tkinter import messagebox
+from fpdf import FPDF
+
 
 class MaterialsQuantities(tk.Frame):
     warehouse_file = 'warehouse_data.json'

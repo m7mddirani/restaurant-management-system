@@ -1,5 +1,10 @@
+import os
 import tkinter as tk
+
+
+from PIL import Image, ImageTk
 from tkcalendar import DateEntry
+
 from backend.most_visited_times import VisitedTimes
 from backend.valuable_customer import CustomerReport
 from backend.earnings import Earnings
@@ -13,31 +18,22 @@ from backend.economic_package_report import EconomicPackageReport
 from backend.low_stock_alert import LowStockAlert
 from backend.stock_aging_report import StockAgingReport
 from backend.turnover_report import WarehouseTurnoverReport
-from PIL import Image, ImageTk
-import os
+
+
 
 class ReportsPage(tk.Frame):
     def __init__(self, master):
-        super().__init__(master)
+        super().__init__(master, bg="#dbd7cd")
         self.master = master
         self.pack(fill=tk.BOTH, expand=True)
         self.create_reports_frame()
 
     def create_reports_frame(self):
-        script_dir = os.path.dirname(__file__)
-        bg_image_path = os.path.join(script_dir, "images", "persia-nov19issue-may20-saghar.jpg")
 
-        self.bg_image = Image.open(bg_image_path)
-        self.bg_image = self.bg_image.resize((self.master.winfo_screenwidth(), self.master.winfo_screenheight()), Image.LANCZOS)
-        self.bg_image = ImageTk.PhotoImage(self.bg_image)
-
-        self.bg_label = tk.Label(self, image=self.bg_image)
-        self.bg_label.place(relwidth=1, relheight=1)
-
-        date_label = tk.Label(self.bg_label, text="Select Date:", bg="#1F2836", fg="#ECF0F1", font=("Arial", 12))
+        date_label = tk.Label( text="Select Date:", bg="#dbd7cd", fg="#334e41", font=("Arial", 12))
         date_label.place(relx=0.5, rely=0.05, anchor=tk.CENTER)
 
-        self.date_entry = DateEntry(self.bg_label, width=12, background='darkblue', foreground='white', borderwidth=2)
+        self.date_entry = DateEntry( width=12, bg="#dbd7cd", fg="#334e41", borderwidth=2)
         self.date_entry.place(relx=0.5, rely=0.1, anchor=tk.CENTER)
 
         buttons = [
@@ -56,11 +52,11 @@ class ReportsPage(tk.Frame):
             ("Warehouse Turnover Report", self.show_warehouse_turnover_report)
         ]
 
-        button_frame = tk.Frame(self.bg_label)  # No background color
+        button_frame = tk.Frame(self) 
         button_frame.place(relx=0.5, rely=0.55, anchor=tk.CENTER)
 
         for i, (text, command) in enumerate(buttons):
-            button = tk.Button(button_frame, text=text, command=command, bg="grey", fg="white", font=("Arial", 12), width=30)
+            button = tk.Button(button_frame, text=text, command=command, bg="#dbd7cd", fg="#334e41", font=("Arial", 12), width=30)
             button.grid(row=i // 2, column=i % 2, padx=10, pady=10)
 
     def show_economic_package_report(self):
@@ -106,13 +102,16 @@ class ReportsPage(tk.Frame):
         input_window = tk.Toplevel(self)
         input_window.title("Customer Order History")
         input_window.geometry("400x200")
-        input_window.configure(bg="#1F2836")
+        input_window.configure(bg="#dbd7cd")
 
-        tk.Label(input_window, text="Customer Name", bg="#1F2836", fg="#F2F2F2").pack(pady=10)
+        tk.Label(input_window, text="Customer Name", bg="#dbd7cd", fg="#334e41").pack(pady=10)
         customer_name_entry = tk.Entry(input_window)
         customer_name_entry.pack(pady=10)
 
-        tk.Button(input_window, text="Print", command=lambda: self.print_customer_order_history(customer_name_entry.get()), bg="grey", fg="white").pack(pady=10)
+        tk.Button(input_window, text="Print", command=lambda: self.print_customer_order_history(customer_name_entry.get()), bg="#dbd7cd", fg="#334e41").pack(pady=10)
+    def print_customer_order_history(self, customer_name):
+        customer_order_history = CustomerHistory()
+        customer_order_history.print_customer_history(customer_name)
 
 
 

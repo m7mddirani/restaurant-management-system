@@ -1,10 +1,14 @@
-import tkinter as tk
-from tkinter import messagebox
-from fpdf import FPDF
 import os
 import json
 import time
+
+
+from tkinter import messagebox
+from fpdf import FPDF
+
 from backend.save_data import SaveData
+
+
 class Earnings:
 
     menu_file = 'menu.json'

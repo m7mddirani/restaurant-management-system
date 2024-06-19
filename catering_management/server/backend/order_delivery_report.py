@@ -1,7 +1,9 @@
-# In backend/order_delivery_report.py
-import tkinter as tk
-from tkinter import ttk
 import time
+import tkinter as tk
+
+
+from tkinter import ttk
+
 from backend.save_data import SaveData
 
 class OrderDeliveryReport(tk.Toplevel):
@@ -11,8 +13,8 @@ class OrderDeliveryReport(tk.Toplevel):
         self.geometry("600x400")
         self.configure(bg="#1F2836")
 
-        self.orders = SaveData.load_orders()
         self.create_widgets()
+        self.reload_orders()
 
     def create_widgets(self):
         columns = ("Order ID", "Customer Name", "Order Date", "Delivery Time", "Status")
@@ -24,17 +26,19 @@ class OrderDeliveryReport(tk.Toplevel):
 
         self.tree.pack(fill=tk.BOTH, expand=True)
 
+    def reload_orders(self):
+        self.orders = SaveData.load_orders()
         self.populate_data()
 
     def populate_data(self):
-        # Separate and sort orders by status
+        self.tree.delete(*self.tree.get_children())  # Clear existing data
+
         in_progress_orders = []
         delivered_orders = []
 
         current_time = time.time()
 
         for order in self.orders:
-            # Calculate remaining time and status
             elapsed_time = (current_time - order['start_time']) / 60  # Convert to minutes
             remaining_time = max(order['prep_time'] - elapsed_time, 0)
             status = "Delivered" if remaining_time == 0 else "In Progress"
@@ -53,6 +57,5 @@ class OrderDeliveryReport(tk.Toplevel):
             else:
                 delivered_orders.append(order_data)
 
-        # Insert In Progress orders first, then Delivered orders
         for order_data in in_progress_orders + delivered_orders:
             self.tree.insert("", tk.END, values=order_data)

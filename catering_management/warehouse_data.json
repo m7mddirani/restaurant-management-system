@@ -187,5 +187,14 @@
         "expiration_date": "2024-12-31",
         "quantity": "4",
         "unit": "Packet"
+    },
+    {
+        "name": "kheyar",
+        "price": "25000",
+        "entry_date": "2024-06-06",
+        "production_date": "2024-06-06",
+        "expiration_date": "2024-09-05",
+        "quantity": "4",
+        "unit": "units"
     }
 ]

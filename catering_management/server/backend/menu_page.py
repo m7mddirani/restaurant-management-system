@@ -1,9 +1,9 @@
-import tkinter as tk
-from tkinter import ttk, messagebox
-from PIL import Image, ImageTk
 import os
-from backend.save_data import SaveData
 import time
+import tkinter as tk
+from tkinter import ttk
+from PIL import Image, ImageTk
+from backend.save_data import SaveData
 
 class MenuPage(tk.Frame):
     def __init__(self, master, server_page, orders, order_to_edit=None, on_save=None):
@@ -13,15 +13,15 @@ class MenuPage(tk.Frame):
         self.orders = orders
         self.order_to_edit = order_to_edit
         self.on_save = on_save
-        self.configure(bg="#1F2836")
+        self.configure(bg="#dbd7cd")
 
         self.item_frames = {}
 
         print("MenuPage: Initialized")
 
-        self.canvas = tk.Canvas(self, bg="#1F2836")
+        self.canvas = tk.Canvas(self, bg="#dbd7cd")
         self.scrollbar = ttk.Scrollbar(self, orient="vertical", command=self.canvas.yview)
-        self.scrollable_frame = tk.Frame(self.canvas, bg="#1F2836")
+        self.scrollable_frame = tk.Frame(self.canvas, bg="#dbd7cd")
 
         self.scrollable_frame.bind(
             "<Configure>",
@@ -43,7 +43,7 @@ class MenuPage(tk.Frame):
         row = 0
 
         for group_name, items in groups.items():
-            tk.Label(parent, text=group_name, font=("Arial", 18), bg="#1F2836", fg="#F2F2F2").grid(row=row, column=0, columnspan=4, pady=10)
+            tk.Label(parent, text=group_name, font=("Arial", 18), bg="#dbd7cd", fg="#334e41").grid(row=row, column=0, columnspan=4, pady=10)
             row += 1
 
             for index, item in enumerate(items):
@@ -54,10 +54,10 @@ class MenuPage(tk.Frame):
             if col != 3:
                 row += 1
 
-        tk.Button(parent, text="Finish Order", command=self.finish_order, bg="#2ECC71", fg="white", font=("Arial", 14)).grid(row=row, column=1, pady=20)
+        tk.Button(parent, text="Finish Order", command=self.finish_order, bg="#dbd7cd", fg="#334e41", font=("Arial", 14)).grid(row=row, column=1, pady=20)
 
     def create_item_frame(self, parent, item, row, col):
-        frame = tk.Frame(parent, bg="#1F2836", bd=2)
+        frame = tk.Frame(parent, bg="#dbd7cd", bd=2)
         frame.grid(row=row, column=col, padx=5, pady=5)
 
         script_dir = os.path.dirname(__file__)
@@ -70,24 +70,24 @@ class MenuPage(tk.Frame):
         label.image = photo
         label.pack()
 
-        label = tk.Label(frame, text=item["name"], bg="#1F2836", fg="#F2F2F2")
+        label = tk.Label(frame, text=item["name"], bg="#dbd7cd", fg="#334e41")
         label.pack()
 
-        label = tk.Label(frame, text=f"Price: {item['price']}", bg="#1F2836", fg="#F2F2F2")
+        label = tk.Label(frame, text=f"Price: {item['price']}", bg="#dbd7cd", fg="#334e41")
         label.pack()
 
-        quantity_frame = tk.Frame(frame, bg="#1F2836")
+        quantity_frame = tk.Frame(frame, bg="#dbd7cd")
         quantity_frame.pack()
 
         self.item_frames[item["name"]] = {"frame": frame, "quantity": 0, "price": item["price"], "prep_time": item["prep_time"]}
 
-        increment_button = tk.Button(quantity_frame, text="+", command=lambda: self.increment(item["name"]))
+        increment_button = tk.Button(quantity_frame,bg="#dbd7cd", fg="#334e41", text="+", command=lambda: self.increment(item["name"]))
         increment_button.grid(row=0, column=0)
 
-        quantity_label = tk.Label(quantity_frame, text="0", bg="#1F2836", fg="#F2F2F2")
+        quantity_label = tk.Label(quantity_frame, text="0", bg="#dbd7cd", fg="#334e41")
         quantity_label.grid(row=0, column=1)
 
-        decrement_button = tk.Button(quantity_frame, text="-", command=lambda: self.decrement(item["name"]))
+        decrement_button = tk.Button(quantity_frame,bg="#dbd7cd", fg="#334e41", text="-", command=lambda: self.decrement(item["name"]))
         decrement_button.grid(row=0, column=2)
 
         self.item_frames[item["name"]]["label"] = quantity_label
@@ -109,7 +109,6 @@ class MenuPage(tk.Frame):
             if item_name in SaveData._order:
                 SaveData._order.remove(item_name)
 
-
     def finish_order(self):
         print("Finish Order button clicked")
         self.show_order_details_window()
@@ -117,39 +116,45 @@ class MenuPage(tk.Frame):
     def show_order_details_window(self):
         window = tk.Toplevel(self)
         window.title("Order Details")
-        window.geometry("400x400")
-        window.configure(bg="#1F2836")
+        window.geometry("800x600") 
+        window.configure(bg="#dbd7cd")
 
-        tk.Label(window, text="First Name", bg="#1F2836", fg="#F2F2F2").pack(pady=5)
-        first_name_entry = tk.Entry(window)
-        first_name_entry.pack(pady=5)
+        script_dir = os.path.dirname(__file__)
+        bg_image_path = os.path.join(script_dir, "images", "persia-nov19issue-may20-saghar.jpg")
+        bg_image = ImageTk.PhotoImage(Image.open(bg_image_path))
+        bg_label = tk.Label(window, image=bg_image)
+        bg_label.image = bg_image
+        bg_label.pack(fill=tk.BOTH, expand=True)
 
-        tk.Label(window, text="Last Name", bg="#1F2836", fg="#F2F2F2").pack(pady=5)
-        last_name_entry = tk.Entry(window)
-        last_name_entry.pack(pady=5)
+        frame = tk.Frame(window, bg="#dbd7cd", bd=5)
+        frame.place(relx=0.5, rely=0.5, anchor="center")
 
-        tk.Label(window, text="Phone Number", bg="#1F2836", fg="#F2F2F2").pack(pady=5)
-        phone_number_entry = tk.Entry(window)
-        phone_number_entry.pack(pady=5)
+        tk.Label(frame, text="First Name", bg="#dbd7cd", fg="#334e41").grid(row=0, column=0, padx=5, pady=5)
+        first_name_entry = tk.Entry(frame, bg="#dbd7cd", fg="#334e41")
+        first_name_entry.grid(row=0, column=1, padx=5, pady=5)
 
-        tk.Label(window, text="Address", bg="#1F2836", fg="#F2F2F2").pack(pady=5)
-        address_entry = tk.Entry(window)
-        address_entry.pack(pady=5)
+        tk.Label(frame, text="Last Name", bg="#dbd7cd", fg="#334e41").grid(row=1, column=0, padx=5, pady=5)
+        last_name_entry = tk.Entry(frame, bg="#dbd7cd", fg="#334e41")
+        last_name_entry.grid(row=1, column=1, padx=5, pady=5)
 
-        tk.Label(window, text="Details", bg="#1F2836", fg="#F2F2F2").pack(pady=5)
-        details_entry = tk.Entry(window)
-        details_entry.pack(pady=5)
+        tk.Label(frame, text="Phone Number", bg="#dbd7cd", fg="#334e41").grid(row=2, column=0, padx=5, pady=5)
+        phone_number_entry = tk.Entry(frame, bg="#dbd7cd", fg="#334e41")
+        phone_number_entry.grid(row=2, column=1, padx=5, pady=5)
 
-        tk.Label(window, text="Transaction ID", bg="#1F2836", fg="#F2F2F2").pack(pady=5)
-        transaction_id_entry = tk.Entry(window)
-        transaction_id_entry.pack(pady=5)
+        tk.Label(frame, text="Address", bg="#dbd7cd", fg="#334e41").grid(row=3, column=0, padx=5, pady=5)
+        address_entry = tk.Entry(frame, bg="#dbd7cd", fg="#334e41")
+        address_entry.grid(row=3, column=1, padx=5, pady=5)
+
+        tk.Label(frame, text="Details", bg="#dbd7cd", fg="#334e41").grid(row=4, column=0, padx=5, pady=5)
+        details_entry = tk.Entry(frame, bg="#dbd7cd", fg="#334e41")
+        details_entry.grid(row=4, column=1, padx=5, pady=5)
 
         new_customer_var = tk.BooleanVar()
-        tk.Checkbutton(window, text="New Customer", variable=new_customer_var, bg="#1F2836", fg="#F2F2F2").pack(pady=5)
+        tk.Checkbutton(frame, text="New Customer", variable=new_customer_var, bg="#dbd7cd", fg="#334e41").grid(row=5, column=0, padx=5, pady=5)
 
-        tk.Label(window, text="Customer Code (if any)", bg="#1F2836", fg="#F2F2F2").pack(pady=5)
-        customer_code_entry = tk.Entry(window)
-        customer_code_entry.pack(pady=5)
+        tk.Label(frame, text="Customer Code (if any)", bg="#dbd7cd", fg="#334e41").grid(row=5, column=1, padx=5, pady=5)
+        customer_code_entry = tk.Entry(frame, bg="#dbd7cd", fg="#334e41")
+        customer_code_entry.grid(row=5, column=2, padx=5, pady=5)
 
         if self.order_to_edit:
             first_name_entry.insert(0, self.order_to_edit.get('first_name', ''))
@@ -157,23 +162,21 @@ class MenuPage(tk.Frame):
             phone_number_entry.insert(0, self.order_to_edit.get('phone_number', ''))
             address_entry.insert(0, self.order_to_edit.get('address', ''))
             details_entry.insert(0, self.order_to_edit.get('details', ''))
-            transaction_id_entry.insert(0, self.order_to_edit.get('transaction_id', ''))
             customer_code_entry.insert(0, self.order_to_edit.get('customer_code', ''))
 
-        submit_button = tk.Button(window, text="Submit", command=lambda: self.submit_order_details(
+        submit_button = tk.Button(frame, bg="#dbd7cd", fg="#334e41", text="Submit", command=lambda: self.submit_order_details(
             first_name_entry.get(),
             last_name_entry.get(),
             phone_number_entry.get(),
             address_entry.get(),
             details_entry.get(),
-            transaction_id_entry.get(),
             new_customer_var.get(),
             customer_code_entry.get(),
             window
-        ), bg="#2ECC71", fg="white")
-        submit_button.pack(pady=10)
+        ))
+        submit_button.grid(row=6, columnspan=2, pady=10)
 
-    def submit_order_details(self, first_name, last_name, phone_number, address, details, transaction_id, new_customer, customer_code, window):
+    def submit_order_details(self, first_name, last_name, phone_number, address, details, new_customer, customer_code, window):
         order_dict = {}
         for item_name, item_data in self.item_frames.items():
             quantity = item_data["quantity"]
@@ -195,6 +198,8 @@ class MenuPage(tk.Frame):
 
         total_price = sum(SaveData.get_item_price(item) * count for item, count in order_dict.items())
         discounted_price = SaveData.apply_discount(total_price, discount)
+
+        transaction_id = self.generate_transaction_id()
 
         new_order = {
             "order": order_dict,
@@ -234,6 +239,12 @@ class MenuPage(tk.Frame):
 
         window.destroy()
         self.server_page.show_orders_page()
+
+    def generate_transaction_id(self):
+        current_date = time.strftime("%Y-%m-%d")
+        transaction_count = SaveData.get_transaction_count(current_date)
+        SaveData.increment_transaction_count()
+        return f"{transaction_count:03d}"
 
     def get_changes_made(self, original_order, new_order):
         changes = []

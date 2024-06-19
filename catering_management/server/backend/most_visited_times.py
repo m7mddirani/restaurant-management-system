@@ -1,10 +1,14 @@
-import json
 import os
+import time
+import json
+
+
 from fpdf import FPDF
 from tkinter import messagebox
-import time
-from backend.save_data import SaveData
 from datetime import datetime
+
+from backend.save_data import SaveData
+
 
 class VisitedTimes:
     order_times_file = 'order_times.json'

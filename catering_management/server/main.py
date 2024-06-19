@@ -1,5 +1,6 @@
 import tkinter as tk
-from threading import Thread
+
+
 from frontend.server_page import ServerPage
 from backend.network import Network
 
