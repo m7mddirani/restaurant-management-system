@@ -1,4 +1,3 @@
-=======
 # Restaurant Management System
 
 ## Introduction
